@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Pictures";
+}
+
+<h2>Pictures</h2>
+@{ 
+    foreach (var item in Model.Images)
+    {
+        @*<td>
+            <img src="~/Pictures/81.jpg" />
+            <img src="~/Pictures/ladda ned (1).jpg" />
+            <img src="~/Pictures/ladda ned (2).jpg" />
+            <img src="~/Pictures/ladda ned.jpg" />
+            <img src="~/Pictures/potd_restricted_pig-large_trans++eo_i_u9APj8RuoebjoAHt0k9u7HhRJvuo-ZLenGRumA.jpg" />
+        </td>*@
+        <img src="~/Pictures/@item" width="250"/>
+    }
+}
+@*<div class="jumbotron" style="height:600px;">
+    <p>
+        <a class="Imgbutton btn btn-primary" data-fancybox-type="iframe" href="@Url.Action("Uploadimage","Home")">Upload new image</a>
+    </p>
+    <div style="border-bottom:1px solid Red;"></div>
+    <div class="row-fluid">
+        <div class="span2">
+            <div class="item">
+              
+                    <div style=" margin:10px; float:left; height:200px;
+                         overflow:hidden; width:200px;">
+                         
+                                <div class="zoom-icon"></div>
+                            </div>
+                        
+                    </div>
+                
+            </div>
+        </div>
+    </div>*@
+
+
