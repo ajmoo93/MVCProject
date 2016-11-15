@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC_1.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,7 +30,17 @@ namespace MVC_1.Controllers
             
                 return View(model);
         }
-
+        public ActionResult Create(Models.MyModel Image, HttpPostedFileBase file)
+        {
+            if (!ModelState.IsValid) { return View(Image); }
+            if(file == null)
+            {
+                ModelState.AddModelError("Error ", "Missing Picture");
+                return View(Image);
+            }
+            file.SaveAs(Path.Combine(Server.MapPath("~/Pictures"), file.FileName));
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
