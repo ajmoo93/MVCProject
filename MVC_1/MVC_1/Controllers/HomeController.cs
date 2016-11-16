@@ -30,6 +30,11 @@ namespace MVC_1.Controllers
             
                 return View(model);
         }
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult Create(Models.MyModel Image, HttpPostedFileBase file)
         {
             if (!ModelState.IsValid) { return View(Image); }
