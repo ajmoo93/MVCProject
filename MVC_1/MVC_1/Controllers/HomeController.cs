@@ -22,7 +22,8 @@ namespace MVC_1.Controllers
 
         public ActionResult Pictures()
         {
-           
+           //kallar på en lista vi gjort och lägger visar
+           //vägen vart vi hämtar/lägger bilder MapPath.
                 var model = new MyModel()
                 {
                     Images = Directory.EnumerateFiles(Server.MapPath("~/Pictures")).Select(fn => Path.GetFileName(fn))
@@ -34,6 +35,8 @@ namespace MVC_1.Controllers
         {
             return View();
         }
+        //Behöver två AcrionResult för att kunna lägga till
+        //ta emor datan (uppe)  och en för att lägga till(nere)
         [HttpPost]
         public ActionResult Create(Models.MyModel Image, HttpPostedFileBase file)
         {
@@ -45,6 +48,24 @@ namespace MVC_1.Controllers
             }
             file.SaveAs(Path.Combine(Server.MapPath("~/Pictures"), file.FileName));
             return View();
+        }
+        public ActionResult Delete(int id)
+        {
+            var db = new List<MyModel>();
+            if(db == null)
+            {
+                return HttpNotFound();
+            }
+            return View(db);
+        }
+        [HttpDelete, ActionName("Delete")]
+        public ActionResult DeleteConfermation(int id)
+        {
+            var db = new List<MyModel>();
+            db.Remove(id);
+            
+                
+            return View;
         }
         public ActionResult About()
         {
