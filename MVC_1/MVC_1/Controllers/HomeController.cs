@@ -22,14 +22,14 @@ namespace MVC_1.Controllers
 
         public ActionResult Pictures()
         {
-           //kallar på en lista vi gjort och lägger visar
-           //vägen vart vi hämtar/lägger bilder MapPath.
-                var model = new MyModel()
-                {
-                    Images = Directory.EnumerateFiles(Server.MapPath("~/Pictures")).Select(fn => Path.GetFileName(fn))
-                };
-            
-                return View(model);
+            //kallar på en lista vi gjort och lägger visar
+            //vägen vart vi hämtar/lägger bilder MapPath.
+            var model = new MyModel()
+            {
+                Images = Directory.EnumerateFiles(Server.MapPath("~/Pictures")).Select(fn => Path.GetFileName(fn))
+            };
+
+            return View(model);
         }
         public ActionResult Create()
         {
@@ -41,7 +41,7 @@ namespace MVC_1.Controllers
         public ActionResult Create(Models.MyModel Image, HttpPostedFileBase file)
         {
             if (!ModelState.IsValid) { return View(Image); }
-            if(file == null)
+            if (file == null)
             {
                 ModelState.AddModelError("Error ", "Missing Picture");
                 return View(Image);
@@ -49,23 +49,41 @@ namespace MVC_1.Controllers
             file.SaveAs(Path.Combine(Server.MapPath("~/Pictures"), file.FileName));
             return View();
         }
-        public ActionResult Delete(int id)
+        public static List<MyModel> db = new List<MyModel>();
+
+        public Img()
         {
-            var db = new List<MyModel>();
-            if(db == null)
+           if(!db.Any())
             {
-                return HttpNotFound();
+                db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = "81.jpg" });
+                db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = "ladda ned (1).jpg" });
+                db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = "ladda ned (2).jpg" });
+                db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = "ladda ned.jpg" });
+                db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = "Jece.jpg" });
             }
+        }
+        public ActionResult Image()
+        {
             return View(db);
         }
-        [HttpDelete, ActionName("Delete")]
-        public ActionResult DeleteConfermation(int id)
+        public ActionResult Delete(Guid id)
         {
-            var db = new List<MyModel>();
-            db.Remove(id);
-            
-                
-            return View;
+            return View(db.FirstOrDefault(x => x.ID == id));
+        }
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfermation(Guid id)
+        {
+            var i = db.FirstOrDefault(x => x.ID == id);
+            string FP = Request.MapPath("~/Pictures/" + i.ImgName);
+            if(System.IO.File.Exists(FP))
+            {
+                System.IO.File.Delete(FP);
+                db.Remove(i);
+            }
+
+
+
+            return RedirectToAction("Pictures");
         }
         public ActionResult About()
         {

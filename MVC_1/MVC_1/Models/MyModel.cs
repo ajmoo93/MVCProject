@@ -7,6 +7,8 @@ namespace MVC_1.Models
 {
     public class MyModel
     {
+        public Guid ID { get; set; }
+        public string ImgName {get; set;}
         public IEnumerable<string> Images { get; set; }
     }
 }
