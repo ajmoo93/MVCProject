@@ -11,8 +11,15 @@
     <h4>MyModel</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.ImgName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(m => m.ImgName)
+        </dd>
     </dl>
 
+    
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
