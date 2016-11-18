@@ -66,24 +66,25 @@ namespace MVC_1.Controllers
         {
             return View(db);
         }
-        public ActionResult Delete(Guid ID)
+        public ActionResult Mymodel(Guid id)
         {
-            return View(db.FirstOrDefault(x => x.ID == ID));
+            var Pht = db.FirstOrDefault(x => x.ID == id);
+            return View(Pht);
+        }
+        public ActionResult Delete(Guid id)
+        {
+            return View(db.FirstOrDefault(x => x.ID == id));
         }
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfermation(Guid id)
         {
             var i = db.FirstOrDefault(x => x.ID == id);
-            string FP = Request.MapPath("~/Pictures/" + i.ImgName);
-            if (System.IO.File.Exists(FP))
-            {
-                System.IO.File.Delete(FP);
-                db.Remove(i);
-            }
-            return RedirectToAction("Pictures");
-
-        }
+            db.Remove(i);
+               return RedirectToAction("Pictures");
         
+
+            }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

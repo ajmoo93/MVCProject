@@ -22,8 +22,8 @@
         <div class="caption">
             <h2>@Model.ID</h2>
             <h2>@Model.ImgName</h2>
-            @Html.ActionLink("show picture", "Showimage", "Pictures", new { PID = Model.ID }, null)
-            @Html.ActionLink("delete picture", "Deleteimage", "Pictures", new { PID = Model.ID }, null)
+            @Html.ActionLink("Show Image", "Mymodel", "Pictures", new { PID = Model.ID }, null)
+            @Html.ActionLink("Delete Image", "Delete", "Pictures", new { PID = Model.ID }, null)
         </div>
     }
 }
