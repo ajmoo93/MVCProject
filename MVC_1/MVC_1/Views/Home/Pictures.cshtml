@@ -12,14 +12,15 @@
 @{
     //här gör vi en foreach loop som kallar på alla bilder vi har i listan
 
-    foreach (var item in Model.Images)
+    foreach (var item in Model)
     {
         <img src="~/Pictures/@item" width="250" />
                 <div class="caption">
-                    <h2>@Model.ID</h2>
-                    <h2>@Model.ImgName</h2>
-                    @Html.ActionLink("Show Image", "MyModel", "Pictures", new { PID = Model.ID }, null)
-                    @Html.ActionLink("Delete Image", "Delete", "Pictures", new { PID = Model.ID }, null)
+                    <h2>@item.ID</h2>
+                    <h2>@item.ID</h2>
+                    @*Här gör vi en ActionLink som länkar dit vi vill*@
+                    @Html.ActionLink("Show Image", "Pictures", "Pictures", new { PID = item.ID }, null)
+                    @Html.ActionLink("Delete Image", "DeleteConfermation", "Pictures", new { PID = item.ID }, null)
 
                 </div>
 

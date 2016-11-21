@@ -10,6 +10,7 @@ namespace MVC_1.Models
         public Guid ID { get; set; }
         public string ImgName {get; set;}
         public DateTime date { get; set; }
+        //En Lista
         public IEnumerable<string> Images { get; set; }
     }
 }

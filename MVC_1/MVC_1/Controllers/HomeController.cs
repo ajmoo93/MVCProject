@@ -23,11 +23,12 @@ namespace MVC_1.Controllers
         public ActionResult Pictures()
         {
             //kallar på en lista vi gjort och lägger visar
-            //vägen vart vi hämtar/lägger bilder MapPath.
+            //vägen vart vi hämtar / lägger bilder MapPath.
             var model = new MyModel()
             {
                 Images = Directory.EnumerateFiles(Server.MapPath("~/Pictures")).Select(fn => Path.GetFileName(fn))
             };
+            //var sImage = db.FirstOrDefault(x => x.ID == id);
 
             return View(model);
         }
@@ -43,16 +44,19 @@ namespace MVC_1.Controllers
             if (!ModelState.IsValid) { return View(Image); }
             if (file == null)
             {
+                //lägger till en error om bilder inte finns
                 ModelState.AddModelError("Error ", "Missing Picture");
                 return View(Image);
             }
             Image.date = DateTime.Now;
+            //Sparar på en specifik lication
             file.SaveAs(Path.Combine(Server.MapPath("~/Pictures"), file.FileName));
             db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = file.FileName });
             return View();
         }
         public static List<MyModel> db = new List<MyModel>();
 
+        //en Lista med Nya Guid Id och name.
         public HomeController()
         {
            if(!db.Any())
@@ -68,12 +72,13 @@ namespace MVC_1.Controllers
         {
             return View(db);
         }
-        
+        //En Delete för att ta in data
         public ActionResult Delete(Guid id)
         {
             var pht = db.FirstOrDefault(x => x.ID == id);
             return View(db);
         }
+        // En Delete till för att skicka data
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfermation(Guid id)
         {
