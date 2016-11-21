@@ -1,0 +1,21 @@
+﻿@model MVC_1.Models.ContreollerModel
+
+@{
+    ViewBag.Title = "CommenttView";
+}
+
+<h2>CommenttView</h2>
+@using (@Html.BeginForm("Pictures", "CommentView"))
+{
+    @Html.TextBoxFor(Com => Com.CommentData)
+    <button name="Button" value="addcomment">AddCOmment</button>
+}
+@{
+    foreach (var Com in Model.comments)
+    {
+        <img src="~/Pictures/@Com.CommentData" width="250" />
+        <h2>@Com.CommentData</h2>
+
+        }
+}
+

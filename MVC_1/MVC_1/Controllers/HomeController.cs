@@ -29,7 +29,7 @@ namespace MVC_1.Controllers
                 Images = Directory.EnumerateFiles(Server.MapPath("~/Pictures")).Select(fn => Path.GetFileName(fn))
             };
 
-            return View(model);
+            return View(db);
         }
         public ActionResult Create()
         {
@@ -72,10 +72,10 @@ namespace MVC_1.Controllers
         public ActionResult Delete(Guid id)
         {
             var pht = db.FirstOrDefault(x => x.ID == id);
-            return View(db);
+            return View(pht);
         }
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfermation(Guid id)
+        [HttpPost]
+        public ActionResult Delete(Guid id, MyModel model)
         {
             var i = db.FirstOrDefault(x => x.ID == id);
             db.Remove(i);

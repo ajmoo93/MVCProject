@@ -1,7 +1,7 @@
 ﻿@*Behövs för var view,  och gör så att den inte blir dynamisk och retunerar va den skall vara
     i detta fall en lista*@
 
-@model MVC_1.Models.MyModel
+@model List<MVC_1.Models.MyModel>
 @{
     ViewBag.Title = "Pictures";
 }
@@ -12,14 +12,15 @@
 @{
     //här gör vi en foreach loop som kallar på alla bilder vi har i listan
 
-    foreach (var item in Model.Images)
+    foreach (var item in Model)
     {
-        <img src="~/Pictures/@item" width="250" />
+        <img src="~/Pictures/@item.ImgName" width="250" />
                 <div class="caption">
-                    <h2>@Model.ID</h2>
-                    <h2>@Model.ImgName</h2>
-                    @Html.ActionLink("Show Image", "MyModel", "Pictures", new { PID = Model.ID }, null)
-                    @Html.ActionLink("Delete Image", "Delete", "Pictures", new { PID = Model.ID }, null)
+                    <h2>@item.ID</h2>
+                    <h2>@item.ImgName</h2>
+                    @Html.ActionLink("Show Image", "Pictures", "Home", new { ID = item.ID }, null)
+                    @Html.ActionLink("Delete Image", "Delete", "Home", new { ID = item.ID }, null)
+                    @Html.ActionLink("Comment", "CommentView", "Comment", new { ID = item.ID }, null)
 
                 </div>
 
