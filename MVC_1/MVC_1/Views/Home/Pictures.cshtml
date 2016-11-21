@@ -1,7 +1,7 @@
 ﻿@*Behövs för var view,  och gör så att den inte blir dynamisk och retunerar va den skall vara
     i detta fall en lista*@
 
-@model MVC_1.Models.MyModel
+@model List<MVC_1.Models.MyModel>
 @{
     ViewBag.Title = "Pictures";
 }
@@ -14,18 +14,24 @@
 
     foreach (var item in Model)
     {
-        <img src="~/Pictures/@item" width="250" />
+        <img src="~/Pictures/@item.ImgName" width="250" />
                 <div class="caption">
                     <h2>@item.ID</h2>
-                    <h2>@item.ID</h2>
-                    @*Här gör vi en ActionLink som länkar dit vi vill*@
-                    @Html.ActionLink("Show Image", "Pictures", "Pictures", new { PID = item.ID }, null)
-                    @Html.ActionLink("Delete Image", "DeleteConfermation", "Pictures", new { PID = item.ID }, null)
+                    <h2>@item.ImgName</h2>
+
+                    @foreach(var photo in item.commentPhoto){
+                        <h2>@photo.CommentData</h2>
+                    }
+                    @Html.ActionLink("Show Image", "Pictures", "Home", new { ID = item.ID }, null)
+                    @Html.ActionLink("Delete Image", "Delete", "Home", new { ID = item.ID }, null)
+                    @Html.ActionLink("Comments", "NewComment", "Home", new { ID = item.ID}, null)
 
                 </div>
 
+               
     }
 }
+
 @*<div class="jumbotron" style="height:600px;">
     <p>
         <a class="Imgbutton btn btn-primary" data-fancybox-type="iframe" href="@Url.Action("Uploadimage","Home")">Upload new image</a>

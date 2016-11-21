@@ -30,7 +30,7 @@ namespace MVC_1.Controllers
             };
             //var sImage = db.FirstOrDefault(x => x.ID == id);
 
-            return View(model);
+            return View(db);
         }
         public ActionResult Create()
         {
@@ -59,13 +59,13 @@ namespace MVC_1.Controllers
         //en Lista med Nya Guid Id och name.
         public HomeController()
         {
-           if(!db.Any())
+            if (!db.Any())
             {
-                db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = "81.jpg" });
-                db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = "ladda ned (1).jpg" });
-                db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = "ladda ned (2).jpg" });
-                db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = "ladda ned.jpg" });
-                db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = "Jece.jpg" });
+                db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = "81.jpg", commentPhoto = new List<Comment> { new Comment { CommentData = "Cute Little Animal" } } });
+                db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = "ladda ned (1).jpg", commentPhoto = new List<Comment> { new Comment { CommentData = "Standing alone" } } });
+                db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = "ladda ned (2).jpg", commentPhoto = new List<Comment> { new Comment { CommentData = "Crappt picture" } } });
+                db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = "ladda ned.jpg", commentPhoto = new List<Comment> { new Comment { CommentData = "What a beautiful picture" } } });
+                db.Add(new MyModel { ID = Guid.NewGuid(), ImgName = "Jece.jpg", commentPhoto = new List<Comment> { new Comment { CommentData = "What is this" } } });
             }
         }
         public ActionResult Image()
@@ -76,7 +76,7 @@ namespace MVC_1.Controllers
         public ActionResult Delete(Guid id)
         {
             var pht = db.FirstOrDefault(x => x.ID == id);
-            return View(db);
+            return View(pht);
         }
         // En Delete till för att skicka data
         [HttpPost, ActionName("Delete")]
@@ -87,6 +87,18 @@ namespace MVC_1.Controllers
             return RedirectToAction("Pictures");
 
 
+        }
+        public ActionResult NewComment(Guid id)
+        {
+            var Com = db.FirstOrDefault(c => c.ID == id);
+            return View(Com);
+        }
+        [HttpPost]
+        public ActionResult NewComment(Guid id, string CommentPhoto)
+        {
+            var Com = db.FirstOrDefault(x => x.ID == id);
+            Com.commentPhoto.Add(new Comment { CommentData = CommentPhoto });
+            return View(Com);
         }
 
         public ActionResult About()

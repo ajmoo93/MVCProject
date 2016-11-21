@@ -12,5 +12,6 @@ namespace MVC_1.Models
         public DateTime date { get; set; }
         //En Lista
         public IEnumerable<string> Images { get; set; }
+        public List<Comment> commentPhoto { get; set; }
     }
 }
