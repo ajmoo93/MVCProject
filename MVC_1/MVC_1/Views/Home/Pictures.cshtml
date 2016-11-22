@@ -20,7 +20,10 @@
                     <h2>@item.ImgName</h2>
 
                     @foreach(var photo in item.commentPhoto){
-                        <h2>@photo.CommentData</h2>
+                       <dov>
+                           <h2>@photo.CommentData</h2>
+                       </dov>
+                         
                     }
                     @Html.ActionLink("Show Image", "Pictures", "Home", new { ID = item.ID }, null)
                     @Html.ActionLink("Delete Image", "Delete", "Home", new { ID = item.ID }, null)
@@ -28,7 +31,17 @@
 
                 </div>
 
-               
+
+    } 
+    
+    @section sidebar {
+                    <ul>
+                        <li><img src="~/Pictures/81.jpg" width="20" /></li>
+                        <li><img src="~/Pictures/Jece.jpg" width="20" /></li>
+                        <li><img src="~/Pictures/ladda ned (1).jpg" width="20" /></li>
+
+                    </ul>
+                    <p></p>
     }
 }
 

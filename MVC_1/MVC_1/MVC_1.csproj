@@ -196,7 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\ErrorPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -204,8 +204,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AlbumModel.cs" />
     <Compile Include="Models\Comment.cs" />
-    <Compile Include="Models\ContreollerModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MyModel.cs" />
@@ -283,11 +283,12 @@
     <Content Include="Views\Home\Pictures.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
-    <Content Include="Views\Comment\CommenttView.cshtml" />
     <Content Include="Views\Home\NewComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Album\" />
+    <Folder Include="Views\Comment\" />
     <Folder Include="Views\ErrorPage\" />
   </ItemGroup>
   <ItemGroup>

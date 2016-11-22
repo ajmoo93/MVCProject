@@ -7,7 +7,6 @@ namespace MVC_1.Models
 {
     public class Comment
     {
-       
         public string CommentData { get; set; }
     }
 }

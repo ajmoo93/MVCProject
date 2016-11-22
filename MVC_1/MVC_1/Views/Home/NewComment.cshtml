@@ -10,7 +10,7 @@
     @Html.AntiForgeryToken()
     <img src="~/Pictures/@Model.ImgName" />
     <div class="form-horizontal">
-        <input type="text" name="Commentbox" id="CommentPhoto" />
+        <input type="text" name="CommentPhoto" id="CommentPhoto" />
         <input type="submit" value="Adding" class="btn btn-default" />
         @Html.ActionLink("Picture", "Pictures")
     </div>
