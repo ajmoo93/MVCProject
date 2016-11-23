@@ -14,17 +14,19 @@
 
     foreach (var item in Model)
     {
+        @*src och img name och en width på bilden. *@
         <img src="~/Pictures/@item.ImgName" width="250" />
                 <div class="caption">
                     <h2>@item.ID</h2>
                     <h2>@item.ImgName</h2>
-
+                    @*Foreach loop som tar var comment som kommer och lägger den vid bilden.*@
                     @foreach(var photo in item.commentPhoto){
                        <dov>
                            <h2>@photo.CommentData</h2>
                        </dov>
                          
                     }
+                    @*Länkar till vart man ska komma(måste heta som viewen)*@
                     @Html.ActionLink("Show Image", "Pictures", "Home", new { ID = item.ID }, null)
                     @Html.ActionLink("Delete Image", "Delete", "Home", new { ID = item.ID }, null)
                     @Html.ActionLink("Comments", "NewComment", "Home", new { ID = item.ID}, null)
@@ -33,14 +35,17 @@
 
 
     } 
-    
+    @*Wn section(sidebar) som med en foreach loop visar senaste bilderna 
+        med en if som räknar fotona*@
     @section sidebar {
-                    <ul>
-                        <li><img src="~/Pictures/81.jpg" width="20" /></li>
-                        <li><img src="~/Pictures/Jece.jpg" width="20" /></li>
-                        <li><img src="~/Pictures/ladda ned (1).jpg" width="20" /></li>
-
-                    </ul>
+                    <h2>Newly Uploaded photos</h2>
+        @foreach(var item in Model)
+        {
+            if(Model.IndexOf(item) == Model.Count - 1)
+            {
+                <img src="~/Pictures/@item.ImgName" width="50" />
+            }
+        }
                     <p></p>
     }
 }

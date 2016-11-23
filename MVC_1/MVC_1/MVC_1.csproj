@@ -205,6 +205,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AlbumModel.cs" />
+    <Compile Include="Models\Albumphoto.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -283,12 +284,12 @@
     <Content Include="Views\Home\Pictures.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
-    <Content Include="Views\Home\NewComment.cshtml" />
+    <Content Include="Views\Comment\NewComment.cshtml" />
+    <Content Include="Views\Album\CreateAlbum.cshtml" />
+    <Content Include="Views\Album\album.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Album\" />
-    <Folder Include="Views\Comment\" />
     <Folder Include="Views\ErrorPage\" />
   </ItemGroup>
   <ItemGroup>

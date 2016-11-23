@@ -7,9 +7,10 @@ namespace MVC_1.Models
 {
     public class AlbumModel
     {
-        
+        public Guid AlbumID { get; set; }
         public string AlbumName { get; set; }
-        public List<AlbumModel> album { get; set; }
+        public List<Comment> albumCom { get; set; }
+        public List<MyModel> pic { get; set; }
 
     }
 }
