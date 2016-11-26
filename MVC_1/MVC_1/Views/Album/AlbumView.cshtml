@@ -1,0 +1,24 @@
+﻿@*@model MVC_1.Models.Albumphoto
+@{ 
+    ViewBag.Title("AlbumView");
+}
+
+<h3>AlbumPhoto</h3>
+@using (Html.BeginForm(
+                                "AlbumView",
+                                "Album",
+                                FormMethod.Post,
+                                new { enctype = "multipart/form-data" }))
+{
+    <h3>AlbumView</h3>
+    foreach(var pic in Model.albumphoto)
+    {
+        <div>
+            <img src="~/Pictures/@pic.pic" />
+        </div>
+    }
+
+
+}*@
+   
+

@@ -37,11 +37,15 @@ namespace MVC_1.Controllers
             return View(Mod);
 
         }
-
-        public ActionResult AddPhoto(IEnumerable<Guid> pictures, Guid id)
+        [HttpPost]
+        public ActionResult AddPhoto(IEnumerable<Guid> pic, Guid Id)
         {
-           
-            return View();
+            var almbum = albume.FirstOrDefault(x => x.AlbumID == Id);
+            foreach(var item in pic)
+            {
+                almbum.pic.Add(HomeController.db.FirstOrDefault(x => x.ID == item));
+            }
+            return View(almbum);
         }
        
         public ActionResult DeleteAlbum(Guid id)

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MVC_1.Models.AlbumModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+@Html.AntiForgeryToken();
+
+<h2>Album Maker</h2>
+@{
+    <p>@Html.ActionLink("Create Album", "CreateAlbum")</p>
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(x => x.AlbumName)</th>
+        </tr>
+    </table>
+
+   
+    foreach (var alb in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(x => alb.AlbumName)
+            </td>
+        </tr>
+
+        <td>
+            @Html.ActionLink("Delete", "DeleteAlbum", "Album", new { AlbumID = alb.AlbumID })
+            @Html.ActionLink("Edit", "EditAlbum", "Album", new { AlbumID = alb.AlbumID });
+        </td>
+
+
+    }
+}
+
