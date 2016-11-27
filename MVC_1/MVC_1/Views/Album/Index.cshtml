@@ -7,6 +7,7 @@
 
 <h2>Album Maker</h2>
 @{
+//Gör en Länkt till CreateAlbum som då vidarbefodrar mig dit
     <p>@Html.ActionLink("Create Album", "CreateAlbum")</p>
     <table class="table">
         <tr>
@@ -14,21 +15,29 @@
         </tr>
     </table>
 
-   
+    //en foreach album i modellen så skriver den ut album name
     foreach (var alb in Model)
     {
+        //Lägga allt i en table för att göra det lite snyggare/bättre.
+        <table class="table">
         <tr>
             <td>
-                @Html.DisplayFor(x => alb.AlbumName)
+                @*Skriver ut albumName*@
+               @Html.DisplayFor(x => alb.AlbumName)
             </td>
         </tr>
 
-        <td>
+        <tr>
+            @*Länkar till actionen "Delete" osv *@
             @Html.ActionLink("Delete", "DeleteAlbum", "Album", new { AlbumID = alb.AlbumID })
+            
             @Html.ActionLink("Edit", "EditAlbum", "Album", new { AlbumID = alb.AlbumID });
-        </td>
+        </tr>
+        </table>
 
 
     }
+
 }
+
 

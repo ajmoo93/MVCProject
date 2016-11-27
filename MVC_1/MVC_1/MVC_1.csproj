@@ -285,14 +285,16 @@
     <Content Include="Views\Home\Pictures.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
-    <Content Include="Views\Comment\NewComment.cshtml" />
+    <Content Include="Views\Home\NewComment.cshtml" />
     <Content Include="Views\Album\CreateAlbum.cshtml" />
     <Content Include="Views\Album\album.cshtml" />
     <Content Include="Views\Album\AlbumView.cshtml" />
     <Content Include="Views\Album\Index.cshtml" />
+    <Content Include="Views\Album\DeleteAlbum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Comment\" />
     <Folder Include="Views\ErrorPage\" />
   </ItemGroup>
   <ItemGroup>

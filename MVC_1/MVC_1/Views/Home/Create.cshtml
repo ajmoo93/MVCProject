@@ -8,10 +8,10 @@
 
 @*Måste ha för att kunna tillåta den att ladda upp filer*@
 @using (Html.BeginForm(
-            "Create",
-            "Home",
-            FormMethod.Post,
-            new { enctype = "multipart/form-data" }))
+                        "Create",
+                        "Home",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
 
 
 {
@@ -28,12 +28,13 @@
                 <label class="control-label col-md-2" for="Photo">Photo</label>
                 <div class="col-md-10">
                     <input type="file" name="file" id="file" />
-                           @Html.ValidationMessage("error")
+                    @Html.ValidationMessage("error")
                 </div>
             </div>
 
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input id="sub" type="submit" value="Create" class="btn btn-default" />
+
             </div>
         </div>
     </div>
@@ -42,4 +43,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-<script src="~/Scripts/Image.js"></script>
+@section Scripts{
+    <script src="~/Scripts/Image.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+}

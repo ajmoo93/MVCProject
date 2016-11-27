@@ -21,9 +21,12 @@
                     <h2>@item.ImgName</h2>
                     @*Foreach loop som tar var comment som kommer och lägger den vid bilden.*@
                     @foreach(var photo in item.commentPhoto){
-                       <dov>
-                           <h2>@photo.CommentData</h2>
-                       </dov>
+                       <table class="table">
+                           <tr>@photo.CommentData</tr>
+                       </table>
+                           
+                           
+                       
                          
                     }
                     @*Länkar till vart man ska komma(måste heta som viewen)*@
