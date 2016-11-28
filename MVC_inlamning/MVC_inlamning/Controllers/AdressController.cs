@@ -19,30 +19,31 @@ namespace MVC_inlamning.Controllers
         {
             if (!Person.Any())
             {
-                Person.Add(new PersonModel { PId = Guid.NewGuid(), Name = " Emil", AdressName = "Plingplongvägen", PhoneNumber = "0758457", date = DateTime.Now });
+                Person.Add(new PersonModel { PId = Guid.NewGuid(), Name = " Emil", AdressName = "Plingplongvägen", PhoneNumber = "075845758", date = DateTime.Now });
                 Person.Add(new PersonModel { PId = Guid.NewGuid(), Name = "Tilda", AdressName = "Görgenvägen", PhoneNumber = "078454585", date = DateTime.Now });
             }
         }
-
-        public ActionResult NewPerson(Guid id)
+        public ActionResult ShowPerson()
         {
-            var P = new PersonModel();
-            Person.Add(P);
-            return View(P);
+            
+            return View(Person);
         }
-        public ActionResult NewPersonCon(Guid id)
+        public ActionResult NewPerson()
+        {
+            //var P = new PersonModel();
+            //Person.Add(P);
+            return View();
+        }
+        [HttpPost]
+        public ActionResult NewPersonCon( PersonModel pers)
            
         {
             if (!ModelState.IsValid)
             {
-                return View("Create", person);
+                return View("NewPerson", Person);
             }
-            man.Add(person);
+            Person.Add(pers);
             return RedirectToAction("Index");
-        }
-    }
-}
-            
         }
     }
 }

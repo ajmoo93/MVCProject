@@ -62,7 +62,7 @@ namespace MVC_1.Controllers
             return View(a);
         }
         [HttpPost ActionName("DeleteAlbum")]
-        public ActionResult DeleteAlbumConferm(Guid id, string AlbumName)
+        public ActionResult DeleteAlbumConferm(Guid id)
         {
             var i = albume.FirstOrDefault(x => x.AlbumID == id);
             albume.Remove(i);
