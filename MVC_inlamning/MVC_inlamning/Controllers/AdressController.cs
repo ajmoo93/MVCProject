@@ -25,9 +25,9 @@ namespace MVC_inlamning.Controllers
         }
         public ActionResult ShowPerson()
         {
-            
-            return View(Person);
+            return PartialView(Person);
         }
+        
         public ActionResult NewPerson()
         {
             //var P = new PersonModel();
@@ -40,10 +40,13 @@ namespace MVC_inlamning.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("NewPerson", Person);
+                //returnerar new person
+                return View("NewPerson", pers);
             }
+            // lägger til ldin person i listan
             Person.Add(pers);
-            return RedirectToAction("Index");
+            //retunerar en lista av person
+            return PartialView("List", Person);
         }
     }
 }
