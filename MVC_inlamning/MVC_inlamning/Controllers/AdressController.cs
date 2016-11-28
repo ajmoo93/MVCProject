@@ -48,5 +48,21 @@ namespace MVC_inlamning.Controllers
             //retunerar en lista av person
             return PartialView("List", Person);
         }
+        //public ActionResult Delete(Guid id)
+        //{
+        //    var i = Person.FirstOrDefault(x => x.PId == id);
+        //    return View(i);
+        //}
+        //public ActionResult DeleteCon(Guid id)
+        //{
+        //    var i = Person.FirstOrDefault(x => x.PId == id);
+        //    Person.Remove(i);
+        //    return RedirectToAction("NewPerson");
+        //}
+        //public ActionResult Edit()
+        //{
+            
+        //    return View();
+        //}
     }
 }
