@@ -22,7 +22,7 @@ namespace MVC_1.Controllers
         {
             //Här skapar vi ett album
             albume.Add(album);
-            return View(album);
+            return View();
         }
         //En konstruktor som tar hans om nya album
         public AlbumController()
@@ -59,10 +59,10 @@ namespace MVC_1.Controllers
         public ActionResult DeleteAlbum(Guid id)
         {
             var a = albume.FirstOrDefault(x => x.AlbumID == id);
-            return View(albume);
+            return View(a);
         }
         [HttpPost ActionName("DeleteAlbum")]
-        public ActionResult DeleteAlbumConferm(Guid id)
+        public ActionResult DeleteAlbumConferm(Guid id, string AlbumName)
         {
             var i = albume.FirstOrDefault(x => x.AlbumID == id);
             albume.Remove(i);

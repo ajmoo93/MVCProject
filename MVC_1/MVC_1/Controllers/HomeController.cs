@@ -8,12 +8,15 @@ using System.Web.Mvc;
 
 namespace MVC_1.Controllers
 {
+    //Authorize kan du göra på själva hela controllern eller bara på inviduella controllers
+    
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
             return View();
         }
+        
         public ActionResult Information()
         {
             ViewBag.Message = "Your Information Page";

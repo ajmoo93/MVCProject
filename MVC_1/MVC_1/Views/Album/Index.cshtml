@@ -29,7 +29,7 @@
 
         <tr>
             @*Länkar till actionen "Delete" osv *@
-            @Html.ActionLink("Delete", "DeleteAlbum", new { AlbumID = alb.AlbumID }, null)
+            @Html.ActionLink("Delete", "DeleteAlbum","Album", new { AlbumID = alb.AlbumID }, null)
             
             @Html.ActionLink("Edit", "EditAlbum", "Album", new { AlbumID = alb.AlbumID }, null);
         </tr>
