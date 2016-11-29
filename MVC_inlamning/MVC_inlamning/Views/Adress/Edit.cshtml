@@ -1,21 +1,7 @@
 ﻿@model MVC_inlamning.Models.PersonModel
 
-@{
-    ViewBag.Title = "NewPerson";
-}
 
-<h2>NewPerson</h2>
-@{ 
-    var options = new AjaxOptions()
-    {
-        HttpMethod = "Post",
-        UpdateTargetId = "result"
-
-
-    };
-}
-@*skall vara samma som controllern" NewPersonCon*@
-@using (Ajax.BeginForm("NewPerson", options)) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
@@ -23,6 +9,9 @@
         <h4>PersonModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*Gör så att man gömmer fältet så att du inte behöver ändra ID*@
+        @Html.HiddenFor(model => model.PId)
+
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -57,22 +46,16 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-            <div id="result">
-               @{ Html.RenderAction("List");}
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
-   
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "NewPerson")
 </div>
 
-<script src="~/Scripts/jquery-3.1.1.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
