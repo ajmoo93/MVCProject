@@ -56,13 +56,13 @@ namespace MVC_1.Controllers
             return View(almbum);
         }
        
-        public ActionResult DeleteAlbum(Guid id)
-        {
-            var a = albume.FirstOrDefault(x => x.AlbumID == id);
-            return View(a);
-        }
+        //public ActionResult DeleteAlbum(Guid id)
+        //{
+        //    var a = albume.FirstOrDefault(x => x.AlbumID == id);
+        //    return View(a);
+        //}
         [HttpPost ActionName("DeleteAlbum")]
-        public ActionResult DeleteAlbumConferm(Guid id)
+        public ActionResult DeleteAlbum(Guid id)
         {
             var i = albume.FirstOrDefault(x => x.AlbumID == id);
             albume.Remove(i);

@@ -6,9 +6,10 @@
 
 <h2>CreateAlbum</h2>
 
-
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>AlbumModel</h4>
         <hr />
@@ -27,7 +28,9 @@
                 <p id="message"></p>
             </div>
         </div>
+       
     </div>
+}
 
 
 <div>
