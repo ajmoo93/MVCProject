@@ -15,7 +15,7 @@ namespace MVCProjektData
         {
 
         }
-
+         
         public DbSet<PhotoModel> photo { get; set; }
         public DbSet<AlbumModel> album { get; set; }
         public DbSet<AccountModel> account { get; set; }
