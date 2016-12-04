@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MVCProjektData.PhotoClass>
+
+@{
+    ViewBag.Title = "PhotList";
+}
+
+<h2>PhotList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PhotoName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhotoId)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img src="~/Pictures/@item.PhotoName" width="250">
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhotoName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhotoId)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PhotoId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PhotoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PhotoId }) |
+            @Html.ActionLink("Comment", "Comment", new { id = item.PhotoId })
+        </td>
+    </tr>
+}
+
+</table>
