@@ -1,0 +1,16 @@
+﻿@model MVCProjektData.AlbumPhotoClass
+@{
+    ViewBag.Title = "Addphoto";
+}
+@using (Html.BeginForm())
+{
+
+    <h2>Test</h2>
+    @Html.DropDownList("Id", Model.AlbumMod.Select(x => new SelectListItem { Text = x.AlbumName, Value = x.AlbumId.ToString()}))
+}
+    @foreach (var item in Model.AlbumMod)
+    {
+        @Model.Id <input type="checkbox" value="@Model.Id" name="photos[]" />
+    }
+<h2>Addphoto</h2>
+

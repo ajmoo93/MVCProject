@@ -22,13 +22,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    @*<li class="dropdown">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Albums<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Albums", "AlbumList", "Album")</li>
                             <li>@Html.ActionLink("Create Album", "CreateAlbum", "Album")</li>
+                            <li>@Html.ActionLink("PhotoAlbum", "Addphoto", "Album")</li>
                         </ul>
-                    </li>*@
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Photos<b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -36,8 +37,15 @@
                             <li>@Html.ActionLink("Upload Photo", "Create", "Gallery")</li>
                         </ul>
                     </li>
-
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("CreateUser", "CreateUser", "Account")</li>
+                        </ul>
+                    </li>
                 </ul>
+                
+                
                 
             </div>
         </div>

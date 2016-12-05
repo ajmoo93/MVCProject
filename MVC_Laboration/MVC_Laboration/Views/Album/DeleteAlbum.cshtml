@@ -21,7 +21,17 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+@{
+            var ajaxOptions = new AjaxOptions
+            {
+                Confirm = " Are you sure?",
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "replace"
+            };
+}
+@using (Ajax.BeginForm("DeleteAlbum", ajaxOptions))
+{
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

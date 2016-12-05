@@ -19,9 +19,15 @@
             @Html.DisplayFor(x => x.AlbumName)
         </dd>
     </dl>
-
-
-    @using (Html.BeginForm())
+@{ 
+    var ajaxOptions = new AjaxOptions
+    {
+        Confirm = "Are you sure?",
+        HttpMethod = "Post",
+        UpdateTargetId = "result"
+    };
+}
+    @using (Ajax.BeginForm("DeleteAlbum", ajaxOptions))
     {
         @Html.AntiForgeryToken()
 

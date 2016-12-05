@@ -50,35 +50,34 @@ namespace MVC_Laboration.Controllers
         }
     }
     // POST: Account/Edit/5
-    [HttpPost]
-    public ActionResult EditUser(Guid id, AccountClass user)
-    {
-        using (var context = new MvcDataContext())
-        {
-            var UserUpdate = context.account.Single(x => x.Id == id);
-            UserUpdate.FirstName = user.FirstName;
-            UserUpdate.LastName = user.LastName;
-            UserUpdate.Email = user.Email;
-            UserUpdate.Password = user.Password;
-            context.SaveChanges();
-        }
-        // TODO: Add update logic here
+    //[HttpPost]
+    //public ActionResult EditUser(Guid id, AccountClass user)
+    //{
+    //    using (var context = new MvcDataContext())
+    //    {
+    //        var UserUpdate = context.account.Single(x => x.Id == id);
+    //        UserUpdate.FirstName = user.FirstName;
+    //        UserUpdate.LastName = user.LastName;
+    //        UserUpdate.Email = user.Email;
+    //        UserUpdate.Password = user.Password;
+    //        context.SaveChanges();
+    //    }
+    //    // TODO: Add update logic here
 
-        return View();
-    }
-    [HttpPost]
-    public ActionResult DeleteUser(Guid id)
-    {
-        using (var context = new MvcDataContext())
-        {
-            var user = context.account.Single(x => x.Id == id);
-            context.account.Remove(user);
-            context.SaveChanges();
-        }
-        // TODO: Add delete logic here
-
-        return View();
-    }
+    //    return View();
+    //}
+    //[HttpPost]
+    //public ActionResult DeleteUser(Guid id)
+    //{
+    //    using (var context = new MvcDataContext())
+    //    {
+    //        var user = context.account.Single(x => x.Id == id);
+    //        context.account.Remove(user);
+    //        context.SaveChanges();
+    //    }
+       
+    //    return View();
+    //}
 }
 
 // POST: Account/Delete/5

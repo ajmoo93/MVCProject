@@ -21,7 +21,7 @@ namespace MVC_1.Controllers
         public ActionResult CreateAlbum(AlbumModel album)
         {
             //Här skapar vi ett album
-            albume.Add(album);
+            //albume.Add(album);
             return View();
         }
         //En konstruktor som tar hans om nya album

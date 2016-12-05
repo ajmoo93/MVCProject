@@ -6,10 +6,18 @@
 
 <h2>CreateUser</h2>
 
-@using (Html.BeginForm()) 
+@{
+    var ajaxOptions = new AjaxOptions
+    {
+        Confirm = " Are you sure?",
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "replace"
+    };
+}
+@using (Ajax.BeginForm("CreateUser", ajaxOptions))
 {
-    @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>AccountClass</h4>
         <hr />
@@ -20,6 +28,7 @@
             </div>
         </div>
     </div>
+    <div id="replace"></div>
 }
 
 <div>

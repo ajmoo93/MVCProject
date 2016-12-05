@@ -10,7 +10,7 @@ namespace MVC_Laboration.Models
     {
         [Key]
         public Guid Id { get; set; }
-        public virtual ICollection<PhotoModel> PhotoMod { get; set; }
-        public virtual ICollection<AlbumModel> AlbumMod { get; set; }
+        public IEnumerable<PhotoModel> PhotoMod { get; set; }
+        public IEnumerable<AlbumModel> AlbumMod { get; set; }
     }
 }

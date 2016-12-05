@@ -16,8 +16,8 @@ namespace MVCProjektData
         public string Email { get; set; }
         public string Password { get; set; }
 
-        public virtual ICollection<CommentModel> comment { get; set; }
-        public virtual ICollection<PhotoModel> photo { get; set; }
-        public virtual ICollection<AlbumModel> album { get; set; }
+        public virtual ICollection<CommentClass> comment { get; set; }
+        public virtual ICollection<PhotoClass> photo { get; set; }
+        public virtual ICollection<AlbumClass> album { get; set; }
     }
 }

@@ -5,11 +5,21 @@
 }
 
 <h2>CreateAlbum</h2>
+@{
+    var ajaxOptions = new AjaxOptions
+    {
+        Confirm = " Are you sure?",
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "replace"
+    };
+}
 
-@using (Html.BeginForm()) 
+@using (Ajax.BeginForm("CreateAlbum", ajaxOptions))
 {
+    {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal" id="Dialog-modal">
         <h4>AlbumClass</h4>
         <hr />
@@ -28,6 +38,7 @@
             </div>
         </div>
     </div>
+    }
 }
 
 <div>

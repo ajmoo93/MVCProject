@@ -11,7 +11,7 @@ namespace MVC_Laboration.Controllers
 {
     public class GalleryController : Controller
     {
-        MvcDataContext db = new MvcDataContext();
+        MvcDataContext context = new MvcDataContext();
         // GET: Gallery
         public ActionResult Index()
         { 
@@ -31,7 +31,8 @@ namespace MVC_Laboration.Controllers
         //}
         public ActionResult PhotList()
         {
-            return View(db.photo.ToList());
+            return View(context.photo.ToList());
+                
         }
         // GET: Gallery/Details/5
         public ActionResult Details(int id)

@@ -9,6 +9,17 @@
     foreach(var photo in Model.pic)
     {
         <img src="~/Pictures/@photo.ImgName" />
+        <input type="checkbox" name="pic[]" value="@photo.ID" />
+
     }
+    <select name="AlbumID">
+        @foreach (var item in Model.Albume)
+        {
+
+
+
+        }
+    </select>
 }
+
 

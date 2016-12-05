@@ -26,7 +26,7 @@ namespace MVC_Laboration.Controllers
             {
                 return View(context.album.ToList());
             }
-                
+
         }
         // GET: Album/Create
         public ActionResult CreateAlbum()
@@ -47,14 +47,45 @@ namespace MVC_Laboration.Controllers
                     context.album.Add(NewAlbum);
                     context.SaveChanges();
                 }
-                    // TODO: Add insert logic here
+                // TODO: Add insert logic here
 
-                    return RedirectToAction("AlbumList");
+                return RedirectToAction("AlbumList");
             }
             catch
             {
                 return View();
             }
+        }
+        public ActionResult Addphoto(AlbumPhotoClass phot)
+        {
+            using (var context = new MvcDataContext())
+            {
+                var model = new AlbumPhotoClass();
+                model.PhotoMod = phot.PhotoMod;
+                model.AlbumMod = phot.AlbumMod;
+                
+                context.albumPhoto.Add(model);
+                return View(model);
+            }
+            
+        }
+        [HttpPost]
+        public ActionResult Addphoto(Guid id, IEnumerable<Guid> photoids)
+        {
+            using (var context = new MvcDataContext())
+            {
+                var album = context.album.FirstOrDefault(x => x.AlbumId == id);
+                foreach (var photoid in photoids)
+                {
+                    var photo = context.photo.FirstOrDefault(x => x.PhotoId == photoid);
+                    album.Photo.Add(photo);
+
+                }
+
+                context.SaveChanges();
+                return View();
+            }
+           
         }
 
         // GET: Album/Edit/5

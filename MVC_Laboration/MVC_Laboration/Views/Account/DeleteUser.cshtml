@@ -12,13 +12,23 @@
     <hr />
     <dl class="dl-horizontal">
     </dl>
-
-    @using (Html.BeginForm()) {
+@{
+    var ajaxOptions = new AjaxOptions
+    {
+        Confirm = " Are you sure?",
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "replace"
+    };
+}
+@using (Ajax.BeginForm("DeleteUser", ajaxOptions))
+{
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
+        <div id="result"></div>
     }
 </div>
