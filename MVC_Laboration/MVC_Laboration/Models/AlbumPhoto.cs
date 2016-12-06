@@ -8,9 +8,11 @@ namespace MVC_Laboration.Models
 {
     public class AlbumPhoto
     {
+        
         [Key]
         public Guid Id { get; set; }
-        public IEnumerable<PhotoModel> PhotoMod { get; set; }
-        public IEnumerable<AlbumModel> AlbumMod { get; set; }
+        public ICollection<PhotoModel> PhotoMod { get; set; }
+        public ICollection<AlbumModel> AlbumMod { get; set; }
+     
     }
 }

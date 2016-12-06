@@ -75,10 +75,6 @@ namespace MVC_Laboration.Controllers
 
             }
         }
-
-
-
-
         // GET: Gallery/Edit/5
         public ActionResult Edit(int id)
         {
@@ -107,6 +103,7 @@ namespace MVC_Laboration.Controllers
             using (var context = new MvcDataContext())
             {
                 var pht = context.photo.Single(x => x.PhotoId == id);
+
                 return View();
             }
                 

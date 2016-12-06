@@ -56,37 +56,37 @@ namespace MVC_Laboration.Controllers
                 return View();
             }
         }
-        public ActionResult Addphoto(AlbumPhotoClass phot)
+        public ActionResult Addphoto(Guid id)
         {
             using (var context = new MvcDataContext())
             {
-                var model = new AlbumPhotoClass();
-                model.PhotoMod = phot.PhotoMod;
-                model.AlbumMod = phot.AlbumMod;
-                
-                context.albumPhoto.Add(model);
-                return View(model);
+                var phot = new AlbumPhotoClass();
+                phot.Id = Guid.NewGuid();
+                phot.AlbumMod = context.album.Where(x => x.AlbumId == id).ToList();
+                phot.PhotoMod = context.photo.Where(x => x.PhotoId == id).ToList();
+                return View(phot);
             }
             
+
         }
-        [HttpPost]
-        public ActionResult Addphoto(Guid id, IEnumerable<Guid> photoids)
-        {
-            using (var context = new MvcDataContext())
-            {
-                var album = context.album.FirstOrDefault(x => x.AlbumId == id);
-                foreach (var photoid in photoids)
-                {
-                    var photo = context.photo.FirstOrDefault(x => x.PhotoId == photoid);
-                    album.Photo.Add(photo);
+        //[HttpPost]
+        //public ActionResult Addphoto(Guid id, IEnumerable<Guid> photoids)
+        //{
+        //    using (var context = new MvcDataContext())
+        //    {
+        //        var album = context.album.FirstOrDefault(x => x.AlbumId == id);
+        //        foreach (var photoid in photoids)
+        //        {
+        //            var photo = context.photo.FirstOrDefault(x => x.PhotoId == photoid);
+        //            album.Photo.Add(photo);
 
-                }
+        //        }
 
-                context.SaveChanges();
-                return View();
-            }
+        //        context.SaveChanges();
+        //        return View();
+        //    }
            
-        }
+        //}
 
         // GET: Album/Edit/5
         public ActionResult Edit(int id)

@@ -45,6 +45,9 @@ namespace MVC_1.Controllers
             return View(Mod);
 
         }
+        var p = albumrepo.ShowAlbum(id);
+        var addcomment = AlbumModelMapper.ModelToEntity(p);
+            return PartialView("AddComment", addcomment);
         [HttpPost]
         public ActionResult AddPhoto(IEnumerable<Guid> pic, Guid Id)
         {

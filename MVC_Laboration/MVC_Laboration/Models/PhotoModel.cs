@@ -14,7 +14,7 @@ namespace MVC_Laboration.Models
         public string PhotoName { get; set; }
         public DateTime Date { get; set; }
 
-        public virtual ICollection<string> Photo { get; set; }
-        public virtual ICollection<CommentModel> Comment { get; set; }
+        public  ICollection<PhotoModel> Photo { get; set; }
+        public  ICollection<CommentModel> Comment { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace MVCProjektData
         public string PhotoName { get; set; }
         public DateTime Date { get; set; }
 
-        public virtual ICollection<string> Photo { get; set; }
-        public virtual ICollection<CommentClass> Comment { get; set; }
+        public  ICollection<PhotoClass> Photo { get; set; }
+        public  ICollection<CommentClass> Comment { get; set; }
     }
 }

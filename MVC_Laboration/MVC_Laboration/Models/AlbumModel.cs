@@ -12,7 +12,7 @@ namespace MVC_Laboration.Models
         public Guid AlbumId { get; set; }
         public string AlbumName { get; set; }
 
-        public virtual ICollection<CommentModel> Comment { get; set; }
-        public virtual ICollection<PhotoModel> Photo { get; set; }
+        public  ICollection<CommentModel> Comment { get; set; }
+        public  ICollection<PhotoModel> Photo { get; set; }
     }
 }

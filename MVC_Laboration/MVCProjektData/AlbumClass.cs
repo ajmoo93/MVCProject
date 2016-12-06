@@ -13,7 +13,7 @@ namespace MVCProjektData
         public Guid AlbumId { get; set; }
         public string AlbumName { get; set; }
 
-        public virtual ICollection<CommentClass> Comment { get; set; }
-        public virtual ICollection<PhotoClass> Photo { get; set; }
+        public  ICollection<CommentClass> Comment { get; set; }
+        public  ICollection<PhotoClass> Photo { get; set; }
     }
 }
