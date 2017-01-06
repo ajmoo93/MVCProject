@@ -9,6 +9,11 @@ namespace MVCProjektData
 {
     public class AlbumClass
     {
+        public AlbumClass()
+        {
+            Comment = new HashSet<CommentClass>();
+            Photo = new HashSet<PhotoClass>();
+        }
         [Key]
         public Guid AlbumId { get; set; }
         public string AlbumName { get; set; }

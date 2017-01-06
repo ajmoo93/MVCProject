@@ -113,6 +113,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Pictures\ajax-loader.gif" />
     <Content Include="Pictures\universum - kopia %282%29.PNG" />
     <Content Include="Scripts\Alertbox.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -128,6 +129,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Spinner.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Gallery\PhotList.cshtml" />
     <Content Include="Views\Gallery\Create.cshtml" />
@@ -148,6 +150,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mapping\AlbumModelMapping.cs" />
+    <Compile Include="Mapping\AlbumPhotoModelMapping.cs" />
+    <Compile Include="Mapping\CommentModelMapping.cs" />
+    <Compile Include="Mapping\PhotoModelMapping.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AlbumModel.cs" />
     <Compile Include="Models\AlbumPhoto.cs" />

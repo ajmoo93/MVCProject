@@ -140,7 +140,7 @@ namespace MVC_Laboration.Controllers
             using (var context = new MvcDataContext())
             {
                 var NewComment = new CommentClass();
-                NewComment.CommentPhoto = commentphoto;
+                NewComment.CommentOnPhoto = commentphoto;
                 context.comment.Add(NewComment);
                 context.SaveChanges();
             }

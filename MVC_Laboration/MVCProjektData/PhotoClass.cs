@@ -9,12 +9,16 @@ namespace MVCProjektData
 {
     public class PhotoClass
     {
+        public PhotoClass()
+        {
+            PComment = new HashSet<CommentClass>();
+        }
         [Key]
         public Guid PhotoId { get; set; }
         public string PhotoName { get; set; }
         public DateTime Date { get; set; }
 
         public  ICollection<PhotoClass> Photo { get; set; }
-        public  ICollection<CommentClass> Comment { get; set; }
+        public  ICollection<CommentClass> PComment { get; set; }
     }
 }

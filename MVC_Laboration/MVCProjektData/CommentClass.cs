@@ -11,7 +11,7 @@ namespace MVCProjektData
     {
         [Key]
         public Guid Id { get; set; }
-        public string CommentPhoto { get; set; }
-        public string CommentAlbum { get; set; }
+        public string CommentOnPhoto { get; set; }
+        public string CommentOnAlbum { get; set; }
     }
 }

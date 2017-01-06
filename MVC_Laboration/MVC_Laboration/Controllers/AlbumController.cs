@@ -3,139 +3,94 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MVCProjektData.Repositories;
+using MVC_Laboration.Models;
+
 using System.Web.Mvc;
+using MVC_Laboration.Mapping;
 
 namespace MVC_Laboration.Controllers
 {
-    public class AlbumController : Controller
-    {
         // GET: Album
-        public ActionResult Index()
+        public class AlbumController : Controller
         {
-            return View();
-        }
+            AlbumRepository albumrepo = new AlbumRepository();
+            PhotoRepository photorepo = new PhotoRepository();
+            //public static List<Album> albums = new List<Album>();
+            //// GET: Album
+            //public AlbumController()
+            //{
+            //    if (!albums.Any())
+            //    {
+            //        albums.Add(new Album { AlbumID = Guid.NewGuid(), AlbumName = "WaterSports", Photos = new List<Photo>(), AlbumComment = new List<Comments> { new Comments { CommentOnAlbum = "Photos with different watersports" } } });
+            //        albums.Add(new Album { AlbumID = Guid.NewGuid(), AlbumName = "Boards", Photos = new List<Photo>(), AlbumComment = new List<Comments> { new Comments { CommentOnAlbum = "Photos on different kind of boards" } } });
+            //    }
 
-        // GET: Album/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-        public ActionResult AlbumList()
-        {
-            using (var context = new MvcDataContext())
+            //}
+            public ActionResult Index()
             {
-                return View(context.album.ToList());
+                return View(albumrepo.GetAllAlbums().Select(x => AlbumModelMapping.ModelToEntity(x)).ToList());
+                //return View(albums);
             }
-
-        }
-        // GET: Album/Create
-        public ActionResult CreateAlbum()
-        {
-            return View();
-        }
-
-        // POST: Album/Create
-        [HttpPost]
-        public ActionResult CreateAlbum(AlbumClass album)
-        {
-            try
+            public ActionResult IndexPartial(AlbumClass album)
             {
-                using (var context = new MvcDataContext())
-                {
-                    var NewAlbum = new AlbumClass();
-                    NewAlbum.AlbumName = album.AlbumName;
-                    context.album.Add(NewAlbum);
-                    context.SaveChanges();
-                }
-                // TODO: Add insert logic here
-
-                return RedirectToAction("AlbumList");
+                return PartialView(album);
             }
-            catch
+            public ActionResult AddNewAlbum()
             {
                 return View();
             }
-        }
-        public ActionResult Addphoto(Guid id)
-        {
-            using (var context = new MvcDataContext())
+            [HttpPost]
+            public ActionResult AddNewAlbum(AlbumModel newalbum, string albumcomment)
             {
-                var phot = new AlbumPhotoClass();
-                phot.Id = Guid.NewGuid();
-                phot.AlbumMod = context.album.Where(x => x.AlbumId == id).ToList();
-                phot.PhotoMod = context.photo.Where(x => x.PhotoId == id).ToList();
-                return View(phot);
+                newalbum.AlbumId = Guid.NewGuid();
+                newalbum.AlbumName = newalbum.AlbumName;
+                newalbum.AComment = new List<CommentModel> { new CommentModel { Id = Guid.NewGuid(), CommentAlbum = albumcomment } };
+                var albums = AlbumModelMapping.EntityToModel(newalbum);
+                albumrepo.AddNewAlbum(albums);
+                return View(newalbum);
             }
-            
-
-        }
-        //[HttpPost]
-        //public ActionResult Addphoto(Guid id, IEnumerable<Guid> photoids)
-        //{
-        //    using (var context = new MvcDataContext())
-        //    {
-        //        var album = context.album.FirstOrDefault(x => x.AlbumId == id);
-        //        foreach (var photoid in photoids)
-        //        {
-        //            var photo = context.photo.FirstOrDefault(x => x.PhotoId == photoid);
-        //            album.Photo.Add(photo);
-
-        //        }
-
-        //        context.SaveChanges();
-        //        return View();
-        //    }
-           
-        //}
-
-        // GET: Album/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Album/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
+            public ActionResult ShowAlbum(Guid id)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                var showalbum = albumrepo.ShowAlbum(id);
+                var show = AlbumModelMapping.ModelToEntity(showalbum);
+                return PartialView("ShowAlbum", show);
             }
-            catch
+            public ActionResult AddComment(Guid id)
             {
-                return View();
+                var p = albumrepo.ShowAlbum(id);
+                var addcomment = AlbumModelMapping.ModelToEntity(p);
+                return PartialView("AddComment", addcomment);
             }
-        }
-
-        // GET: Album/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Album/Delete/5
-        [HttpPost]
-        public ActionResult DeleteAlbum(Guid id)
-        {
-            using (var context = new MvcDataContext())
+            [HttpPost]
+            public ActionResult AddComment(Guid id, string albumComment)
             {
-                var DeleteAlbum = context.album.Single(x => x.AlbumId == id);
+                //var p = albums.FirstOrDefault(x => x.AlbumID == id);
+                //p.AlbumComment.Add(new Comments { CommentOnAlbum = albumComment });
+                var album = albumrepo.AddCommentToAlbum(id, albumComment);
+                var albums = AlbumModelMapping.ModelToEntity(album);
+                return PartialView("IndexPartial", albums);
             }
-            // TODO: Add delete logic here
-            return View();
-        }
-        public ActionResult DeleteAlbum(Guid id, FormCollection collection)
-        {
-            using (var context = new MvcDataContext())
+            public ActionResult AddPhotoToAlbum()
             {
-                var d = context.album.Single(x => x.AlbumId == id);
-                context.album.Remove(d);
-                context.SaveChanges();
+                var model = new AlbumPhoto();
+            model.AlbumMod = albumrepo.GetAllAlbums().Select(x => AlbumModelMapping.ModelToEntity(x)).ToList();
+                model.PhotoMod = photorepo.GetAllPhoto().Select(x => PhotoModelMapping.ModelToEntity(x)).ToList();
+                //var model = new ViewAlbumPhoto();
+                //model.Photos = GalleryController.photos;
+                //model.Albums = AlbumController.albums;
+                return View(model);
             }
-            return View("AlbumList");
+            [HttpPost]
+            public ActionResult AddPhotoToAlbum(IEnumerable<Guid> photos, Guid albumID)
+            {
+                albumrepo.AddPhotoToAlbum(photos, albumID);
+                //var album = albums.FirstOrDefault(x => x.AlbumID == albumID);
+                //foreach (var item in photos)
+                //{
+                //    album.Photos.Add(GalleryController.photos.FirstOrDefault(x => x.PhotoID == item));
+                //}
+                return Content("OK!");
+            }
         }
     }
-}

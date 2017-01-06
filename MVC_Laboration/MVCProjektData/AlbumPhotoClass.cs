@@ -9,6 +9,11 @@ namespace MVCProjektData
 {
    public class AlbumPhotoClass
     {
+        public AlbumPhotoClass()
+        {
+            PhotoMod = new HashSet<PhotoClass>();
+            AlbumMod = new HashSet<AlbumClass>();
+        }
         [Key]
         public Guid Id { get; set; }
         public virtual ICollection<PhotoClass> PhotoMod { get; set; }

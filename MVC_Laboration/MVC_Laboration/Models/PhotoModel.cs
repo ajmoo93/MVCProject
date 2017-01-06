@@ -15,6 +15,6 @@ namespace MVC_Laboration.Models
         public DateTime Date { get; set; }
 
         public  ICollection<PhotoModel> Photo { get; set; }
-        public  ICollection<CommentModel> Comment { get; set; }
+        public  ICollection<CommentModel> PComment { get; set; }
     }
 }
