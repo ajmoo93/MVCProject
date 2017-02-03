@@ -244,10 +244,15 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Album\AddPhotoToAlbum.cshtml" />
+    <Content Include="Views\Album\Index.cshtml" />
+    <Content Include="Views\Album\IndexPartial.cshtml" />
+    <Content Include="Views\Album\AddNewAlbum.cshtml" />
+    <Content Include="Views\Album\ShowAlbum.cshtml" />
+    <Content Include="Views\Album\AddComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Album\" />
     <Folder Include="Views\Gallery\" />
   </ItemGroup>
   <ItemGroup>
