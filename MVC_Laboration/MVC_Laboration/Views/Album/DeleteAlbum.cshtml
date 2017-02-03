@@ -30,7 +30,7 @@
                 UpdateTargetId = "replace"
             };
 }
-@using (Ajax.BeginForm("DeleteAlbum", ajaxOptions))
+@using (Html.BeginForm())
 {
         @Html.AntiForgeryToken()
 

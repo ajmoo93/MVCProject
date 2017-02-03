@@ -10,7 +10,17 @@
 }
     @foreach (var item in Model.PhotoMod)
     {
-        @Model.Id <input type="checkbox" value="@Model.Id" name="photos[]" />
+        <div>
+            @*<img src="/Pictures/@photo.Name"/>*@
+            @Model.Id <input type="checkbox" value="@Model.Id" name="photos[]"/>
+        </div>
     }
+<select name="albumId">
+    @foreach (var album in Model.AlbumMod)
+    {
+        <option value="@album.AlbumId">@album.AlbumName</option>
+    }
+</select>
+<input type="submit" value="Add To Album" class="btn btn-success"/>
 <h2>Addphoto</h2>
 

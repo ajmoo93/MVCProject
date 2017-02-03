@@ -1,0 +1,12 @@
+﻿@model MvcLaboration4.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<h4>@Model.AlbumName</h4>
+@foreach (var item in Model.Photos)
+{
+  <img src="//@item.PhotoName"/>
+}

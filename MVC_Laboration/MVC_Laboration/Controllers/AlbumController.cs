@@ -14,83 +14,56 @@ namespace MVC_Laboration.Controllers
         // GET: Album
         public class AlbumController : Controller
         {
-            AlbumRepository albumrepo = new AlbumRepository();
-            PhotoRepository photorepo = new PhotoRepository();
-            //public static List<Album> albums = new List<Album>();
-            //// GET: Album
-            //public AlbumController()
-            //{
-            //    if (!albums.Any())
-            //    {
-            //        albums.Add(new Album { AlbumID = Guid.NewGuid(), AlbumName = "WaterSports", Photos = new List<Photo>(), AlbumComment = new List<Comments> { new Comments { CommentOnAlbum = "Photos with different watersports" } } });
-            //        albums.Add(new Album { AlbumID = Guid.NewGuid(), AlbumName = "Boards", Photos = new List<Photo>(), AlbumComment = new List<Comments> { new Comments { CommentOnAlbum = "Photos on different kind of boards" } } });
-            //    }
+            public static List<AlbumModel> albumrepo = new List<AlbumModel>();
+            //PhotoRepository photorepo = new PhotoRepository();
+        //public static List<Album> albums = new List<Album>();
+        //// GET: Album
+        public AlbumController()
+        {
+            if (!albumrepo.Any())
+            {
+                albumrepo.Add(new AlbumModel { AlbumId = Guid.NewGuid(), AlbumName = "Earth", Photo = new List<PhotoModel>(),AComment  = new List<CommentModel> { new CommentModel { CommentAlbum = "Cows" } } });
+                albumrepo.Add(new AlbumModel { AlbumId = Guid.NewGuid(), AlbumName = "Boards", Photo = new List<PhotoModel>(), AComment = new List<CommentModel> { new CommentModel { CommentAlbum = "Photos on different kind of boards" } } });
+            }
 
-            //}
-            public ActionResult Index()
+        }
+        public ActionResult Index()
+        {
+            return View(albumrepo);
+        }
+        public ActionResult ShowAlbum(Guid id)
+        {
+            var showalbum = albumrepo.FirstOrDefault(x => x.AlbumId == id);
+            return PartialView("ShowAlbum", showalbum);
+        }
+        public ActionResult AddComment(Guid id)
+        {
+            var p = albumrepo.FirstOrDefault(x => x.AlbumId == id);
+            return PartialView("AddComment", p);
+        }
+        [HttpPost]
+        public ActionResult AddComment(Guid id, string albumComment)
+        {
+            var p = albumrepo.FirstOrDefault(x => x.AlbumId == id);
+            p.AComment.Add(new CommentModel { CommentAlbum = albumComment });
+            return PartialView("Index", albums);
+        }
+        public ActionResult AddPhotoToAlbum()
+        {
+            var model = new AlbumPhoto();
+            model.PhotoMod = GalleryController.;
+            model.AlbumMod = AlbumController.albumrepo;
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AddPhotoToAlbum(IEnumerable<Guid> photos, Guid albumID)
+        {
+            var album = albumrepo.FirstOrDefault(x => x.AlbumId == albumID);
+            foreach (var item in photos)
             {
-                return View(albumrepo.GetAllAlbums().Select(x => AlbumModelMapping.ModelToEntity(x)).ToList());
-                //return View(albums);
+                album.Photo.Add(GalleryController..FirstOrDefault(x => x.PhotoID == item));
             }
-            public ActionResult IndexPartial(AlbumClass album)
-            {
-                return PartialView(album);
-            }
-            public ActionResult AddNewAlbum()
-            {
-                return View();
-            }
-            [HttpPost]
-            public ActionResult AddNewAlbum(AlbumModel newalbum, string albumcomment)
-            {
-                newalbum.AlbumId = Guid.NewGuid();
-                newalbum.AlbumName = newalbum.AlbumName;
-                newalbum.AComment = new List<CommentModel> { new CommentModel { Id = Guid.NewGuid(), CommentAlbum = albumcomment } };
-                var albums = AlbumModelMapping.EntityToModel(newalbum);
-                albumrepo.AddNewAlbum(albums);
-                return View(newalbum);
-            }
-            public ActionResult ShowAlbum(Guid id)
-            {
-                var showalbum = albumrepo.ShowAlbum(id);
-                var show = AlbumModelMapping.ModelToEntity(showalbum);
-                return PartialView("ShowAlbum", show);
-            }
-            public ActionResult AddComment(Guid id)
-            {
-                var p = albumrepo.ShowAlbum(id);
-                var addcomment = AlbumModelMapping.ModelToEntity(p);
-                return PartialView("AddComment", addcomment);
-            }
-            [HttpPost]
-            public ActionResult AddComment(Guid id, string albumComment)
-            {
-                //var p = albums.FirstOrDefault(x => x.AlbumID == id);
-                //p.AlbumComment.Add(new Comments { CommentOnAlbum = albumComment });
-                var album = albumrepo.AddCommentToAlbum(id, albumComment);
-                var albums = AlbumModelMapping.ModelToEntity(album);
-                return PartialView("IndexPartial", albums);
-            }
-            public ActionResult AddPhotoToAlbum()
-            {
-                var model = new AlbumPhoto();
-            model.AlbumMod = albumrepo.GetAllAlbums().Select(x => AlbumModelMapping.ModelToEntity(x)).ToList();
-                model.PhotoMod = photorepo.GetAllPhoto().Select(x => PhotoModelMapping.ModelToEntity(x)).ToList();
-                //var model = new ViewAlbumPhoto();
-                //model.Photos = GalleryController.photos;
-                //model.Albums = AlbumController.albums;
-                return View(model);
-            }
-            [HttpPost]
-            public ActionResult AddPhotoToAlbum(IEnumerable<Guid> photos, Guid albumID)
-            {
-                albumrepo.AddPhotoToAlbum(photos, albumID);
-                //var album = albums.FirstOrDefault(x => x.AlbumID == albumID);
-                //foreach (var item in photos)
-                //{
-                //    album.Photos.Add(GalleryController.photos.FirstOrDefault(x => x.PhotoID == item));
-                //}
-                return Content("OK!");
-            }
+            return Content("OK!");
         }
     }
+}
