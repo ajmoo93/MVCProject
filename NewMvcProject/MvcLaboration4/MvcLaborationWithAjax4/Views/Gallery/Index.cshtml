@@ -1,0 +1,57 @@
+﻿@using MvcLaborationWithAjax4.Models
+@model  List<MvcLaborationWithAjax4.Models.Photo>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+
+@{
+    var ajaxAllPhoto = new AjaxOptions
+    {
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "content"
+    };
+    var ajaxOption = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "content"
+    };
+}
+
+<h2>Index</h2>
+@foreach (var photo in Model)
+{
+    <div>
+        <img src="/Images/@photo.PhotoName"/>
+    </div>
+    <div id="CommentLoader">
+        <h4>Comment</h4>
+        @foreach (var comment in photo.PhotoComment)
+        {
+            <div>
+                @comment.CommentOnPicture
+            </div>
+        }
+    </div>
+    @Ajax.ActionLink($"Photo Comment {photo.PhotoName}", "AddComment", new { id = photo.PhotoID}, ajaxAllPhoto)
+    @Ajax.ActionLink($"Show Photo {photo.PhotoName}", "ShowPhoto", new { id = photo.PhotoID }, ajaxAllPhoto)
+    @Ajax.ActionLink("Delete", "DeletePhoto", new { id = photo.PhotoID }, ajaxOption)
+}
+@section scripts{
+    
+<script src="~/Scripts/CommentLoader.js"></script>
+}
+@*@section latest{
+    <h3>Newly uploaded pictures</h3>
+    @foreach (var phot in Model)
+    {
+        if (Model.IndexOf(phot) == Model.Count - 1)
+        {
+            <img src="/Images/@phot.PhotoName"/>
+        }
+    }*@
+}

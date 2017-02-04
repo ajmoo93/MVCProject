@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using MvcLaborationData.Repository;
+using MvcLaborationdata.Repository;
 using System.Web.Mvc;
+using MvcLaborationdata.Entities;
 using MvcLaborationWithAjax4.Mapping;
 using MvcLaborationWithAjax4.Models;
 
@@ -16,7 +17,7 @@ namespace MvcLaborationWithAjax4.Controllers
         // GET: Album
         public ActionResult Index()
         {
-            return View(albumrepo.GetAllAlbums().Select(x => AlbumModelMapping.ModelToEntity(x)).ToList());
+            return View(albumrepo.GetAlbum().Select(x => AlbumModelMapping.ModelToEntity(x)).ToList());
         }
 
         public ActionResult IndexPartial(Album album)
@@ -36,14 +37,14 @@ namespace MvcLaborationWithAjax4.Controllers
             newalbum.AlbumName = newalbum.AlbumName;
             newalbum.AlbumComments = new List<Comments> {new Comments {Id = Guid.NewGuid(), CommentOnAlbum = albumcomment} };
             var albums = AlbumModelMapping.EntityToModel(newalbum);
-            albumrepo.AddNewAlbum(albums);
+            albumrepo.AddAlbum(albums);
             return View(newalbum);
         }
 
         public ActionResult ShowAlbum(Guid id)
         {
-            var showalbum = albumrepo.ShowAlbum(id);
-            var show = AlbumModelMapping.ModelToEntity(showalbum);
+            var s = albumrepo.ShowAlbum(id);
+            var show = AlbumModelMapping.ModelToEntity(s);
             return PartialView("ShowAlbum", show);
         }
 
@@ -56,7 +57,7 @@ namespace MvcLaborationWithAjax4.Controllers
         [HttpPost]
         public ActionResult AddComment(Guid id, string albumComment)
         {
-            var album = albumrepo.AddCommentToAlbum(id, albumComment);
+            var album = albumrepo.AddComment(id, albumComment);
             var albums = AlbumModelMapping.ModelToEntity(album);
             return PartialView("IndexPartial", albums);
         }
@@ -64,14 +65,15 @@ namespace MvcLaborationWithAjax4.Controllers
         public ActionResult AddPhotoToAlbum()
         {
             var aModel = new AlbumPhotoView();
-            aModel.Albums = albumrepo.GetAllAlbums().Select(x => AlbumModelMapping.ModelToEntity(x)).ToList();
-            aModel.Photos = photorepo.GetAllPhotos().Select(x => PhotoModelMapping.ModelToEntity(x)).ToList();
+            aModel.Albums = albumrepo.GetAlbum().Select(x => AlbumModelMapping.ModelToEntity(x)).ToList();
+            aModel.Photos = photorepo.GetPhotos().Select(x => PhotoModelMapping.ModelToEntity(x)).ToList();
             return View(aModel);
         }
-
+        [HttpPost]
         public ActionResult AddPhotoToAlbum(IEnumerable<Guid> photos, Guid albumid)
         {
             albumrepo.AddPhotoToAlbum(photos, albumid);
+           
             return Content("Good!");
         }
     }

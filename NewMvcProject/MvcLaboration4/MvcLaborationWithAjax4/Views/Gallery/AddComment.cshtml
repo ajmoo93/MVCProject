@@ -1,0 +1,19 @@
+﻿@model MvcLaborationWithAjax4.Models.Photo
+
+@{
+    var ajaxOption = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "content"
+    };
+}
+@using (Ajax.BeginForm("AddComment", ajaxOption))
+{
+    <img src="/Images/@Model.PhotoName"/>
+    <input type="text" name="photoComment"/>
+    <input type="submit" value="Add Comment"/>
+}
+<div id="Addcomment">
+    @{Html.RenderAction("IndexPartial");}
+</div>

@@ -196,9 +196,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Image\Cat1.jpg" />
+    <Content Include="Image\Cat2.jpeg" />
+    <Content Include="Image\Cat3.jpg" />
+    <Content Include="Image\Cat4.jpg" />
+    <Content Include="Image\Spinner\6.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\CommentLoader.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -209,6 +215,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Spinner.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -250,10 +257,14 @@
     <Content Include="Views\Album\AddNewAlbum.cshtml" />
     <Content Include="Views\Album\ShowAlbum.cshtml" />
     <Content Include="Views\Album\AddComment.cshtml" />
+    <Content Include="Views\Gallery\Index.cshtml" />
+    <Content Include="Views\Gallery\IndexPartial.cshtml" />
+    <Content Include="Views\Gallery\AddNewPhoto.cshtml" />
+    <Content Include="Views\Gallery\ShowPhoto.cshtml" />
+    <Content Include="Views\Gallery\AddComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Gallery\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -262,6 +273,12 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MvcLaborationdata\MvcLaborationdata.csproj">
+      <Project>{716fb4ba-5ef6-4401-84e6-d9216df041d5}</Project>
+      <Name>MvcLaborationdata</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

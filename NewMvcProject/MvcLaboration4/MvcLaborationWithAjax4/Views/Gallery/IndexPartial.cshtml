@@ -1,0 +1,8 @@
+﻿@model MvcLaborationWithAjax4.Models.Photo
+
+<p>@Model.PhotoName</p>
+@foreach (var item in Model.PhotoComment)
+{
+    <p>@item.CommentOnPicture</p>
+}
+@Html.ActionLink("Back to gallery", "Index")

@@ -34,6 +34,13 @@ namespace MvcLaborationdata.Repository
 
         }
 
+        public AlbumEntityModel ShowAlbum(Guid id)
+        {
+            using (var context = new MvcDataContext())
+            {
+                return (context.AlbumEntityModels.Include("Comment").FirstOrDefault(x => x.AlbumId == id));
+            }
+        }
         public void DeleteAlbum(AlbumEntityModel album)
         {
             using (var context = new MvcDataContext())
