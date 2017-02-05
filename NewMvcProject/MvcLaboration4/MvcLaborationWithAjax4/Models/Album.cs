@@ -11,7 +11,7 @@ namespace MvcLaborationWithAjax4.Models
         public Guid AlbumID { get; set; }
         [Required(ErrorMessage = "Please enter a name for the Album")]
         public string AlbumName { get; set; }
-        public List<Comments> AlbumComments { get; set; }
-        public List<Photo> Photos { get; set; }
+        public ICollection<Comments> AlbumComments { get; set; }
+        public ICollection<Photo> Photos { get; set; }
     }
 }

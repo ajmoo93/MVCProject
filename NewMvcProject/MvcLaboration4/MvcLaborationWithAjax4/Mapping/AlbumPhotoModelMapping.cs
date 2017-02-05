@@ -33,7 +33,7 @@ namespace MvcLaborationWithAjax4.Mapping
             return res;
         }
 
-        public static PhotoEntityModel MapPhotoModel(Photo photo)
+        public static PhotoEntityModel MapPhotoEntityModel(Photo photo)
         {
             return new PhotoEntityModel
             {

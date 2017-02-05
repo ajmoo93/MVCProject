@@ -14,7 +14,7 @@ namespace MvcLaborationdata.Repository
         {
             using (var context = new MvcDataContext())
             {
-                var albums = context.AlbumEntityModels.Include("Comments").ToList();
+                var albums = context.AlbumEntityModels.Include("Comment").Include("Photo").ToList();
                 return albums;
             }
         }

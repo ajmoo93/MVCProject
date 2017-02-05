@@ -9,6 +9,6 @@ namespace MvcLaborationWithAjax4.Models
     {
         public Guid PhotoID { get; set; }
         public string PhotoName { get; set; }
-        public List<Comments> PhotoComment { get; set; }
+        public ICollection<Comments> PhotoComment { get; set; }
     }
 }

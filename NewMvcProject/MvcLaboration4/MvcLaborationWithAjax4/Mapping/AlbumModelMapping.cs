@@ -45,7 +45,7 @@ namespace MvcLaborationWithAjax4.Mapping
             };
         }
 
-        public ICollection<Comments> MapCommentEntityModel(ICollection<CommentEntityModel> comments)
+        public static ICollection<Comments> MapCommentModel(ICollection<CommentEntityModel> comments)
         {
             var res = new List<Comments>();
             comments.ToList().ForEach(x => res.Add(MapCommentModel(x)));
@@ -76,7 +76,7 @@ namespace MvcLaborationWithAjax4.Mapping
             {
                 PhotoID = photo.PhotoId,
                 PhotoName = photo.PhotoName,
-                PhotoComment = PhotoModelMapping.MapCommentModel(photo.Comment)
+                PhotoComment = PhotoModelMapping.MapCommentModel(photo.Comment),
                 
             };
         }
