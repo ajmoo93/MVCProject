@@ -9,7 +9,7 @@ namespace NewKunskapsKontroll.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public string Adress { get; set; }
         public DateTime date { get; set; }
     }
