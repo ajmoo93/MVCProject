@@ -1,4 +1,4 @@
-﻿@using MvcLaborationWithAjax4.Models
+﻿
 @model  List<MvcLaborationWithAjax4.Models.Photo>
 
 @{
@@ -21,14 +21,14 @@
         UpdateTargetId = "content"
     };
 }
-
+@Html.ActionLink("Upload picture", "AddNewPhoto")
 <h2>Index</h2>
 @foreach (var photo in Model)
 {
     <div>
-        <img src="/Images/@photo.PhotoName"/>
+        <img src="/Image/@photo.PhotoName" />
     </div>
-    <div id="CommentLoader">
+    <div id="loadComments">
         <h4>Comment</h4>
         @foreach (var comment in photo.PhotoComment)
         {
@@ -51,7 +51,7 @@
     {
         if (Model.IndexOf(phot) == Model.Count - 1)
         {
-            <img src="/Images/@phot.PhotoName"/>
+            <img src="/Image/@phot.PhotoName"/>
         }
     }*@
-}
+

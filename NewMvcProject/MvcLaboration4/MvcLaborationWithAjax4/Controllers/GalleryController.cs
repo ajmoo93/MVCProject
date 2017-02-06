@@ -16,6 +16,8 @@ namespace MvcLaborationWithAjax4.Controllers
     {
         PhotoRepository photorepo = new PhotoRepository();
         // GET: Gallery
+
+        
         public ActionResult Index()
         {
 
@@ -32,9 +34,9 @@ namespace MvcLaborationWithAjax4.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AddNewPhoto(Photo newphoto, string comment, HttpPostedFileBase[] files)
+        public ActionResult AddNewPhoto(string comment, HttpPostedFileBase[] files, Photo newphoto)
         {
-            Thread.Sleep(3500);
+            Thread.Sleep(3000);
             if (!ModelState.IsValid)
             {
                 return View(newphoto);
@@ -45,7 +47,7 @@ namespace MvcLaborationWithAjax4.Controllers
             }
             foreach (var file in files)
             {
-                file.SaveAs(Path.Combine(Server.MapPath("~/Images"), file.FileName));
+                file.SaveAs(Path.Combine(Server.MapPath("/Image"), file.FileName));
                 newphoto.PhotoID = Guid.NewGuid();
                 newphoto.PhotoName = file.FileName;
                 newphoto.PhotoComment = new List<Comments> {new Comments {Id = Guid.NewGuid(), CommentOnPicture = comment} };

@@ -69,12 +69,12 @@ namespace MvcLaborationWithAjax4.Controllers
             aModel.Photos = photorepo.GetPhotos().Select(x => PhotoModelMapping.ModelToEntity(x)).ToList();
             return View(aModel);
         }
-        [HttpPost]
-        public ActionResult AddPhotoToAlbum(IEnumerable<Guid> photos, Guid albumid)
-        {
-            albumrepo.AddPhotoToAlbum(photos, albumid);
+        //[HttpPost]
+        //public ActionResult AddPhotoToAlbum(IEnumerable<Guid> photos, Guid albumid)
+        //{
+        //    albumrepo.AddPhotoToAlbum(photos, albumid);
            
-            return Content("Good!");
-        }
+        //    return Content("Good!");
+        //}
     }
 }

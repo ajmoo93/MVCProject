@@ -5,12 +5,12 @@
     {
         HttpMethod = "POST",
         InsertionMode = InsertionMode.Replace,
-        UpdateTargetId = "content"
+        UpdateTargetId = "Addcomment"
     };
 }
 @using (Ajax.BeginForm("AddComment", ajaxOption))
 {
-    <img src="/Images/@Model.PhotoName"/>
+    <img src="/Image/@Model.PhotoName"/>
     <input type="text" name="photoComment"/>
     <input type="submit" value="Add Comment"/>
 }
